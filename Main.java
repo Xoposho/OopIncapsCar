@@ -1,4 +1,6 @@
 import Driver.DriverB;
+import Driver.DriverC;
+import Driver.DriverD;
 import transport.Bus;
 import transport.FreightCar;
 import transport.PassengerCar;
@@ -54,12 +56,14 @@ public class Main {
 
         System.out.println();
 
-        DriverB <PassengerCar> mikle = new DriverB<PassengerCar>("Зубенко Михаил Петрович", true, 3);
+        DriverB mikle = new DriverB("Зубенко Михаил Петрович", true, 3);
         mikle.startRace(lada);
-        DriverB <FreightCar> sergay = new DriverB<FreightCar>("Зубенко Сергей Петрович", true, 1);
+        DriverC sergay = new DriverC("Зубенко Сергей Иванович", true, 1);
         sergay.startRace(maz);
-        DriverB <Bus> igor = new DriverB<Bus>("Зубенко Игорь Петрович", true, 10);
+        DriverD igor = new DriverD("Зубенко Игорь Алексеевич", true, 10);
         igor.startRace(mersedes);
+        maz.maxSpeed();
+
 
     }
 }

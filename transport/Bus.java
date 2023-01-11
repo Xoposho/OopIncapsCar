@@ -1,5 +1,7 @@
 package transport;
 
+import Driver.Driver;
+
 public class Bus extends Transport implements Competing {
     public Bus(String brand, String model, double engineVolume) {
         super(brand, model, engineVolume);
@@ -20,13 +22,10 @@ public class Bus extends Transport implements Competing {
         System.out.println("Автобус  " + getBrand() + " " + getModel() + "  обслуживается");
     }
 
-    @Override
     public void bestTimeLap() {
-        System.out.println("Лучшее время круга " + getBrand() + " " + getModel() + ": ");
+        System.out.println("Лучшее время круга на " + getBrand() + " " + getModel() + ": ");
     }
-
-    @Override
     public void maxSpeed() {
-        System.out.println("Максимальная скорость " + getBrand() + " " + getModel() + ": ");
+        System.out.println("Максимальная скорость на " + getBrand() + " " + getModel() + ": ");
     }
 }

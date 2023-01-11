@@ -1,10 +1,10 @@
 package Driver;
 
+import transport.PassengerCar;
 import transport.Transport;
-
 import java.util.Objects;
 
-public abstract class Driver {
+public abstract class Driver<T extends Transport> {
     private String fullName;
     private boolean driverLicence;
     private int drivingExperience;
@@ -20,12 +20,6 @@ public abstract class Driver {
         }
     }
 
-    public abstract void startDriving();
-
-    public abstract void stopDriving();
-
-    public abstract void fillTheTank();
-
     @Override
     public String toString() {
         return "Водитель: " +
@@ -35,12 +29,28 @@ public abstract class Driver {
                 " лет.";
     }
 
+    public void startRace(T transport) {
+        System.out.println("Водитель " + getFullName() + " начал гонку на автомобиле - " + transport.getBrand() + transport.getModel());
+    }
+
+    public void startDriving() {
+        System.out.println("Водитель " + getFullName() + " начал гонку");
+    }
+
+    public void stopDriving() {
+        System.out.println("Водитель " + getFullName() + " закончил гонку");
+    }
+
+    public void fillTheTank() {
+        System.out.println("Водитель " + getFullName() + " заправляется");
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Driver driver = (Driver) o;
-        return driverLicence == driver.driverLicence && drivingExperience == driver.drivingExperience && fullName.equals(driver.fullName);
+        Driver<?> driver = (Driver<?>) o;
+        return driverLicence == driver.driverLicence && drivingExperience == driver.drivingExperience && Objects.equals(fullName, driver.fullName);
     }
 
     @Override
