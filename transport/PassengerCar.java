@@ -1,8 +1,22 @@
 package transport;
+
+import transport.Classification.ClassificationPassengerCar;
+
 public class PassengerCar extends Transport implements Competing {
 
-    public PassengerCar(String brand, String model, double engineVolume) {
+    private ClassificationPassengerCar bodyType;
+
+    public PassengerCar(String brand, String model, double engineVolume, ClassificationPassengerCar bodyType) {
         super(brand, model, engineVolume);
+        this.bodyType = bodyType;
+    }
+
+    public ClassificationPassengerCar getBodyType() {
+        return bodyType;
+    }
+
+    public void setBodyType(ClassificationPassengerCar bodyType) {
+        this.bodyType = bodyType;
     }
 
     @Override

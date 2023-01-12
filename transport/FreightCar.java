@@ -1,10 +1,24 @@
 package transport;
 
+import transport.Classification.ClassificationFreightCar;
+
 public class FreightCar extends Transport implements Competing {
 
-    public FreightCar(String brand, String model, double engineVolume) {
+    private ClassificationFreightCar loadCapacity;
+
+    public FreightCar(String brand, String model, double engineVolume, ClassificationFreightCar loadCapacity) {
         super(brand, model, engineVolume);
+        this.loadCapacity = loadCapacity;
     }
+
+    public ClassificationFreightCar getLoadCapacity() {
+        return loadCapacity;
+    }
+
+    public void setLoadCapacity(ClassificationFreightCar loadCapacity) {
+        this.loadCapacity = loadCapacity;
+    }
+
 
     @Override
     public void startMoving() {
@@ -15,6 +29,7 @@ public class FreightCar extends Transport implements Competing {
     public void endMoving() {
         System.out.println("Грузовой автомобиль " + getBrand() + " " + getModel() + "  остановился");
     }
+
 
     @Override
     public void pitStop() {

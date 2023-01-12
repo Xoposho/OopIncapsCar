@@ -1,10 +1,22 @@
 package transport;
 
 import Driver.Driver;
+import transport.Classification.ClassificationBus;
 
 public class Bus extends Transport implements Competing {
-    public Bus(String brand, String model, double engineVolume) {
+
+    private ClassificationBus seatCount;
+    public Bus(String brand, String model, double engineVolume, ClassificationBus seatCount) {
         super(brand, model, engineVolume);
+        this.seatCount = seatCount;
+    }
+
+    public ClassificationBus getSeatCount() {
+        return seatCount;
+    }
+
+    public void setSeatCount(ClassificationBus seatCount) {
+        this.seatCount = seatCount;
     }
 
     @Override
