@@ -13,17 +13,17 @@ public class Main {
     public static void main(String[] args) {
         PassengerCar lada = new PassengerCar("Lada", "Granta Sport", 2.0, ClassificationPassengerCar.HATCHBACK);
         PassengerCar audi = new PassengerCar("Audi", "A8 50 L TDI quattro", 3.0, ClassificationPassengerCar.COUPE);
-        PassengerCar bmw = new PassengerCar("BMW", "Z8", 2.5, ClassificationPassengerCar.COUPE);
+        PassengerCar bmw = new PassengerCar("BMW", "Z8", 2.5, null);
         PassengerCar kia = new PassengerCar("KIA", "Stinger", 2.5, ClassificationPassengerCar.CROSSOVER);
 
         Bus volkswagen = new Bus("Volkswagen", "g67", 6.0, ClassificationBus.MEDIUM);
-        Bus mersedes = new Bus("Mersedes", "Sprinter", 3.0, ClassificationBus.SMALL);
+        Bus mersedes = new Bus("Mersedes", "Sprinter", 3.0, null);
         Bus zil = new Bus("ZIL", "118 \"Yonger\" ", 10, ClassificationBus.ESPECIALLY_BIG);
         Bus nefaz = new Bus("NefAZ", "5299", 6.7, ClassificationBus.BIG);
 
         FreightCar maz = new FreightCar("MAZ", "6501", 11.1, ClassificationFreightCar.N2);
         FreightCar isuzu = new FreightCar("Isuzu", "Elf", 5.2, ClassificationFreightCar.N1);
-        FreightCar gaz = new FreightCar("GAZ", "Next", 4.4, ClassificationFreightCar.N3);
+        FreightCar gaz = new FreightCar("GAZ", "Next", 4.4, null);
         FreightCar man = new FreightCar("MAN", "TGM", 6.9, ClassificationFreightCar.N2);
 
         System.out.println(lada);
@@ -72,6 +72,7 @@ public class Main {
         System.out.println(gaz.getLoadCapacity());
         audi.setBodyType(ClassificationPassengerCar.CROSSOVER);
         System.out.println(audi.getBodyType());
+        bmw.printType();
 
     }
 }

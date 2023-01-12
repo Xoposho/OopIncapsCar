@@ -30,6 +30,15 @@ public class PassengerCar extends Transport implements Competing {
     }
 
     @Override
+    public void printType() {
+        if (bodyType == null){
+            System.out.println("Дынных по транспортному средству недостаточно");
+        } else {
+            System.out.println(bodyType);
+        }
+    }
+
+    @Override
     public void pitStop() {
         System.out.println("Легковой автомобиль  " + getBrand() + " " + getModel() + "  обслуживается");
     }

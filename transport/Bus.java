@@ -30,6 +30,14 @@ public class Bus extends Transport implements Competing {
     }
 
     @Override
+    public void printType() {
+        if (seatCount == null) {
+            System.out.println("Дынных по транспортному средству недостаточно");
+        } else {
+            System.out.println(seatCount);
+        }
+    }
+    @Override
     public void pitStop() {
         System.out.println("Автобус  " + getBrand() + " " + getModel() + "  обслуживается");
     }

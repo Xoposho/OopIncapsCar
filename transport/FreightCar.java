@@ -30,7 +30,14 @@ public class FreightCar extends Transport implements Competing {
         System.out.println("Грузовой автомобиль " + getBrand() + " " + getModel() + "  остановился");
     }
 
-
+    @Override
+    public void printType() {
+        if (loadCapacity == null) {
+            System.out.println("Дынных по транспортному средству недостаточно");
+        } else {
+            System.out.println(loadCapacity);
+        }
+    }
     @Override
     public void pitStop() {
         System.out.println("Грузовой автомобиль  " + getBrand() + " " + getModel() + "  обслуживается");
