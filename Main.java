@@ -1,17 +1,69 @@
+import Driver.DriverB;
+import Driver.DriverC;
+import Driver.DriverD;
+import Exeption.DiagnosticFailedException;
+import jdk.jfr.StackTrace;
+import transport.Classification.ClassificationBus;
+import transport.Classification.ClassificationFreightCar;
+import transport.Classification.ClassificationPassengerCar;
+import transport.Bus;
+import transport.FreightCar;
+import transport.PassengerCar;
+
+
 public class Main {
     public static void main(String[] args) {
-        Car lada = new Car(null, "Granta", 1.7, "yellow", 2015, "Russia");
-        Car audi = new Car("Audi", "A8 50 L TDI quattro", 3.0, "black", 2020, "Germany");
-        Car bmw = new Car("BMW", "Z8", 0, "black", 2021, "Germany");
-        Car kia = new Car("Kia", "Sportage", 2.4, "red", 0, "South Korea");
-        Car hyundai = new Car("Hyundai", "Avante", 1.6, null, 2016, "South Korea");
 
-        lada.carInfo();
-        audi.carInfo();
-        bmw.carInfo();
-        kia.carInfo();
-        hyundai.carInfo();
+        DriverB mikle = new DriverB(
+                "Зубенко Михаил Петрович",
+                3);
+
+
+        PassengerCar lada = new PassengerCar(
+                "Lada",
+                "Granta Sport",
+                2.0,
+                ClassificationPassengerCar.HATCHBACK,
+                mikle);
+
+
+        DriverC sergay = new DriverC(
+                "Зубенко Сергей Иванович",
+                1);
+
+        FreightCar maz = new FreightCar(
+                "MAZ",
+                "6501",
+                11.1,
+                ClassificationFreightCar.N2,
+                sergay);
+
+        DriverD igor = new DriverD(
+                "Зубенко Игорь Алексеевич",
+                10);
+
+        Bus volkswagen = new Bus(
+                "Volkswagen",
+                "g67",
+                6.0,
+                ClassificationBus.MEDIUM,
+                igor);
+
+        try {
+            lada.diagnostic();
+        } catch (DiagnosticFailedException e) {
+            e.printStackTrace();
+            System.out.println("Ошибка при проведении диагностики");
+        }
+
+        try {
+            maz.diagnostic();
+        } catch (DiagnosticFailedException e){
+            e.printStackTrace();
+            System.out.println("Ошибка при проведении диагностики");
+        }
+
+
     }
-
-
 }
+//by Igor
