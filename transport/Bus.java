@@ -1,13 +1,15 @@
 package transport;
 
-import Driver.Driver;
 import transport.Classification.ClassificationBus;
+import Driver.DriverD;
 
 public class Bus extends Transport implements Competing {
 
     private ClassificationBus seatCount;
-    public Bus(String brand, String model, double engineVolume, ClassificationBus seatCount) {
+    private final DriverD driver;
+    public Bus(String brand, String model, double engineVolume, ClassificationBus seatCount, DriverD driver) {
         super(brand, model, engineVolume);
+        this.driver = driver;
         this.seatCount = seatCount;
     }
 
@@ -17,6 +19,10 @@ public class Bus extends Transport implements Competing {
 
     public void setSeatCount(ClassificationBus seatCount) {
         this.seatCount = seatCount;
+    }
+
+    public DriverD getDriver() {
+        return driver;
     }
 
     @Override
@@ -30,9 +36,13 @@ public class Bus extends Transport implements Competing {
     }
 
     @Override
+    public void diagnostic(){
+    }
+
+    @Override
     public void printType() {
         if (seatCount == null) {
-            System.out.println("Дынных по транспортному средству недостаточно");
+            System.out.println("Не указана вместительность!");
         } else {
             System.out.println(seatCount);
         }

@@ -1,5 +1,7 @@
 package transport;
 
+import Exeption.DiagnosticFailedException;
+
 import java.util.Objects;
 
 public abstract class Transport {
@@ -21,6 +23,8 @@ public abstract class Transport {
     public abstract void startMoving();
 
     public abstract void endMoving();
+
+    public abstract void diagnostic() throws DiagnosticFailedException;
 
     public abstract void printType();
 

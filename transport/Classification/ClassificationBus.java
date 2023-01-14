@@ -12,7 +12,7 @@ public enum ClassificationBus {
     private final int seatCountMax;
 
 
-    ClassificationBus(Integer sitCountMin, Integer sitCountMax) {
+    ClassificationBus(int sitCountMin, int sitCountMax) {
         this.seatCountMin = sitCountMin;
         this.seatCountMax = sitCountMax;
     }

@@ -13,17 +13,22 @@ public enum ClassificationFreightCar {
         this.loadCapacityMax = loadCapacityMax;
     }
 
-    public float getLoadCapacityMin() {
+    public Float getLoadCapacityMin() {
         return loadCapacityMin;
     }
 
-    public float getLoadCapacityMax() {
+    public Float getLoadCapacityMax() {
         return loadCapacityMax;
     }
 
     @Override
     public String toString() {
-        return "Минимальная грузоподъёмность " + loadCapacityMin +
-                " т., максимальна грузоподъёмность " + loadCapacityMax + " т.";
+        if (getLoadCapacityMax() != null) {
+            return "Минимальная грузоподъёмность " + loadCapacityMin +
+                    " т., максимальна грузоподъёмность " + loadCapacityMax + " т.";
+        } else {
+            return "Грузоподъёмность от " + loadCapacityMin + " т.";
+        }
+
     }
 }

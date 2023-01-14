@@ -2,9 +2,17 @@ package Driver;
 
 import transport.PassengerCar;
 
-public class DriverB extends Driver<PassengerCar>{
+import static Driver.DriverLicence.B;
 
-    public DriverB(String fullName, boolean driverLicence, int drivingExperience) {
-        super(fullName, driverLicence, drivingExperience);
+public class DriverB extends Driver<PassengerCar> {
+
+    public DriverB(String fullName, int drivingExperience) {
+        super(fullName, drivingExperience, null);
+
+    }
+
+    @Override
+    public DriverLicence getLicence() {
+        return super.getLicence();
     }
 }

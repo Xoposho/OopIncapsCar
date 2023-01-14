@@ -1,17 +1,16 @@
 package Driver;
 
-import transport.PassengerCar;
 import transport.Transport;
 import java.util.Objects;
 
 public abstract class Driver<T extends Transport> {
     private String fullName;
-    private boolean driverLicence;
     private int drivingExperience;
+    private final DriverLicence licence;
 
-    public Driver(String fullName, boolean driverLicence, int drivingExperience) {
+    public Driver(String fullName, int drivingExperience, DriverLicence licence) {
         this.fullName = Objects.requireNonNullElse(fullName, "default");
-        this.driverLicence = driverLicence;
+        this.licence = licence;
 
         if (drivingExperience <= 0) {
             this.drivingExperience = 1;
@@ -23,9 +22,8 @@ public abstract class Driver<T extends Transport> {
     @Override
     public String toString() {
         return "Водитель: " +
-                "ФИО - " + fullName +
-                ", действительность водительских прав - " + driverLicence +
-                ", опыт вождения" + drivingExperience +
+                "ФИО - " + fullName + ". " + licence +
+                ", опыт вождения " + drivingExperience +
                 " лет.";
     }
 
@@ -50,20 +48,16 @@ public abstract class Driver<T extends Transport> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Driver<?> driver = (Driver<?>) o;
-        return driverLicence == driver.driverLicence && drivingExperience == driver.drivingExperience && Objects.equals(fullName, driver.fullName);
+        return drivingExperience == driver.drivingExperience && Objects.equals(fullName, driver.fullName) && licence == driver.licence;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(fullName, driverLicence, drivingExperience);
+        return Objects.hash(fullName, drivingExperience, licence);
     }
 
     public void setFullName(String fullName) {
         this.fullName = Objects.requireNonNullElse(fullName, "default");
-    }
-
-    public void setDriverLicence(boolean driverLicence) {
-        this.driverLicence = driverLicence;
     }
 
     public void setDrivingExperience(int drivingExperience) {
@@ -78,14 +72,11 @@ public abstract class Driver<T extends Transport> {
         return fullName;
     }
 
-    public boolean isDriverLicence() {
-        return driverLicence;
-    }
-
     public int getDrivingExperience() {
         return drivingExperience;
     }
 
-    private class Competing {
+    public DriverLicence getLicence() {
+        return licence;
     }
 }

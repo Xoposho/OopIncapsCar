@@ -1,13 +1,17 @@
 package transport;
 
+import Driver.DriverB;
+import Exeption.DiagnosticFailedException;
 import transport.Classification.ClassificationPassengerCar;
 
 public class PassengerCar extends Transport implements Competing {
 
     private ClassificationPassengerCar bodyType;
+    private final DriverB driver;
 
-    public PassengerCar(String brand, String model, double engineVolume, ClassificationPassengerCar bodyType) {
+    public PassengerCar(String brand, String model, double engineVolume, ClassificationPassengerCar bodyType, DriverB driver) {
         super(brand, model, engineVolume);
+        this.driver = driver;
         this.bodyType = bodyType;
     }
 
@@ -17,6 +21,10 @@ public class PassengerCar extends Transport implements Competing {
 
     public void setBodyType(ClassificationPassengerCar bodyType) {
         this.bodyType = bodyType;
+    }
+
+    public DriverB getDriver() {
+        return driver;
     }
 
     @Override
@@ -30,9 +38,18 @@ public class PassengerCar extends Transport implements Competing {
     }
 
     @Override
+    public void diagnostic() throws DiagnosticFailedException {
+        if (driver.getLicence() != null){
+            System.out.println("Диагностика прошла успешно!");
+        } else {
+            throw new DiagnosticFailedException("Необходимо указать тип прав!");
+        }
+    }
+
+    @Override
     public void printType() {
         if (bodyType == null){
-            System.out.println("Дынных по транспортному средству недостаточно");
+            System.out.println("Не указан тип кузова!");
         } else {
             System.out.println(bodyType);
         }
