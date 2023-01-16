@@ -3,14 +3,15 @@ package transport;
 import Driver.DriverB;
 import Exeption.DiagnosticFailedException;
 import transport.Classification.ClassificationPassengerCar;
+import static Mechanics.TypeRepair.REPAIR_CAR;
 
-public class PassengerCar extends Transport implements Competing {
+public class Car extends Transport implements Competing {
 
     private ClassificationPassengerCar bodyType;
     private final DriverB driver;
 
-    public PassengerCar(String brand, String model, double engineVolume, ClassificationPassengerCar bodyType, DriverB driver) {
-        super(brand, model, engineVolume);
+    public Car(String brand, String model, double engineVolume, ClassificationPassengerCar bodyType, DriverB driver) {
+        super(brand, model, engineVolume, REPAIR_CAR, driver);
         this.driver = driver;
         this.bodyType = bodyType;
     }
