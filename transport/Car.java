@@ -2,10 +2,16 @@ package transport;
 
 import Driver.DriverB;
 import Exeption.DiagnosticFailedException;
+import Mechanics.Mechanics;
 import transport.Classification.ClassificationPassengerCar;
+
+import java.util.Collection;
+import java.util.Map;
+import java.util.Set;
+
 import static Mechanics.TypeRepair.REPAIR_CAR;
 
-public class Car extends Transport implements Competing {
+public class Car extends Transport implements Competing, Map<Transport<?>, Mechanics> {
 
     private ClassificationPassengerCar bodyType;
     private final DriverB driver;
@@ -69,6 +75,66 @@ public class Car extends Transport implements Competing {
     @Override
     public void maxSpeed() {
         System.out.println("Максимальная скорость " + getBrand() + " " + getModel() + ": ");
+    }
+
+    @Override
+    public int size() {
+        return 0;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return false;
+    }
+
+    @Override
+    public boolean containsKey(Object key) {
+        return false;
+    }
+
+    @Override
+    public boolean containsValue(Object value) {
+        return false;
+    }
+
+    @Override
+    public Mechanics get(Object key) {
+        return null;
+    }
+
+    @Override
+    public Mechanics remove(Object key) {
+        return null;
+    }
+
+    @Override
+    public void clear() {
+
+    }
+
+    @Override
+    public Set<Transport<?>> keySet() {
+        return null;
+    }
+
+    @Override
+    public Collection<Mechanics> values() {
+        return null;
+    }
+
+    @Override
+    public Set<Entry<Transport<?>, Mechanics>> entrySet() {
+        return null;
+    }
+
+    @Override
+    public void putAll(Map<? extends Transport<?>, ? extends Mechanics> m) {
+
+    }
+
+    @Override
+    public Mechanics put(Transport<?> key, Mechanics value) {
+        return null;
     }
 }
 //by Igor
