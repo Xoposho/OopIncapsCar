@@ -1,25 +1,39 @@
 package transport;
 
+import Driver.Driver;
 import Exeption.DiagnosticFailedException;
+import Mechanics.Mechanics;
+import Mechanics.TypeRepair;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
-public abstract class Transport {
+public abstract class Transport <T extends Driver> implements Competing{
     private String brand;
     private String model;
     private double engineVolume;
+    private final TypeRepair typeRepair;
+    private final List<Mechanics> mechanic = new ArrayList<>();
+    private final T driver;
 
-    public Transport(String brand, String model, double engineVolume) {
+    public Transport(String brand, String model, double engineVolume, TypeRepair typeRepair, T driver) {
         this.brand = Objects.requireNonNullElse(brand, "default");
         this.model = Objects.requireNonNullElse(model, "default");
+        this.typeRepair = typeRepair;
+        this.driver = driver;
 
         if (engineVolume != 0) {
             this.engineVolume = engineVolume;
         } else {
             this.engineVolume = 1.5;
         }
-    }
 
+
+    }
+    public void addMechanic(Mechanics mechanics){
+        mechanic.add(mechanics);
+    }
     public abstract void startMoving();
 
     public abstract void endMoving();
@@ -49,6 +63,11 @@ public abstract class Transport {
         return Objects.hash(brand, model, engineVolume);
     }
 
+
+    public List<Mechanics> getMechanics() {
+        return mechanic;
+    }
+
     public String getBrand() {
         return brand;
     }
@@ -57,8 +76,16 @@ public abstract class Transport {
         return model;
     }
 
+    public Driver getDriver() {
+        return driver;
+    }
+
     public double getEngineVolume() {
         return engineVolume;
+    }
+
+    public TypeRepair getTypeRepair() {
+        return typeRepair;
     }
 
     public void setBrand(String brand) {

@@ -1,14 +1,14 @@
 package transport;
 
+import static Mechanics.TypeRepair.REPAIR_BUS;
 import transport.Classification.ClassificationBus;
 import Driver.DriverD;
-
 public class Bus extends Transport implements Competing {
 
     private ClassificationBus seatCount;
     private final DriverD driver;
     public Bus(String brand, String model, double engineVolume, ClassificationBus seatCount, DriverD driver) {
-        super(brand, model, engineVolume);
+        super(brand, model, engineVolume, REPAIR_BUS, driver);
         this.driver = driver;
         this.seatCount = seatCount;
     }

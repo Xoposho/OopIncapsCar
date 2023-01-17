@@ -1,17 +1,23 @@
 package Driver;
 
+import Mechanics.Mechanics;
+import Mechanics.TypeRepair;
 import transport.Transport;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public abstract class Driver<T extends Transport> {
     private String fullName;
     private int drivingExperience;
     private final DriverLicence licence;
+    private final TypeRepair mechanic;
 
-    public Driver(String fullName, int drivingExperience, DriverLicence licence) {
+    public Driver(String fullName, int drivingExperience, DriverLicence licence, TypeRepair mechanic) {
         this.fullName = Objects.requireNonNullElse(fullName, "default");
         this.licence = licence;
-
+        this.mechanic = mechanic;
         if (drivingExperience <= 0) {
             this.drivingExperience = 1;
         } else {
@@ -78,5 +84,22 @@ public abstract class Driver<T extends Transport> {
 
     public DriverLicence getLicence() {
         return licence;
+    }
+
+    public TypeRepair getMechanic() {
+        return mechanic;
+    }
+    public Mechanics[] getMechanics(Mechanics[] mechanics) {
+        System.out.println("Механики водителя " + getFullName() + ": ");
+        List<Mechanics> mech = new ArrayList<>();
+        for (Mechanics m : mechanics) {
+            if (getMechanic().equals(m.getTypeCarRepair1()) ||
+                    getMechanic().equals(m.getTypeCarRepair2()) ||
+                    getMechanic().equals(m.getTypeCarRepair3())) {
+                mech.add(m);
+                System.out.println(m);
+            }
+        }
+        return mech.toArray(new Mechanics[mech.size() - 1]);
     }
 }

@@ -2,16 +2,17 @@ package transport;
 
 import Driver.DriverC;
 import Exeption.DiagnosticFailedException;
+import static Mechanics.TypeRepair.REPAIR_TRUCK;
 import transport.Classification.ClassificationFreightCar;
 
-public class FreightCar extends Transport implements Competing {
+public class Truck extends Transport implements Competing {
 
     private ClassificationFreightCar loadCapacity;
 
     private final DriverC driver;
 
-    public FreightCar(String brand, String model, double engineVolume, ClassificationFreightCar loadCapacity, DriverC driver) {
-        super(brand, model, engineVolume);
+    public Truck(String brand, String model, double engineVolume, ClassificationFreightCar loadCapacity, DriverC driver) {
+        super(brand, model, engineVolume, REPAIR_TRUCK, driver);
         this.driver = driver;
         this.loadCapacity = loadCapacity;
     }
