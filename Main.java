@@ -4,7 +4,6 @@ import Driver.DriverC;
 import Driver.DriverD;
 import Exeption.DiagnosticFailedException;
 import Mechanics.Mechanics;
-import RepairStation.ServiceStation;
 import transport.Classification.ClassificationBus;
 import transport.Classification.ClassificationFreightCar;
 import transport.Classification.ClassificationPassengerCar;
@@ -12,14 +11,14 @@ import transport.Bus;
 import transport.Truck;
 import transport.Car;
 import transport.Transport;
-
 import static Mechanics.TypeRepair.*;
-import java.util.ArrayList;
-import java.util.List;
+import Driver.DriverLicence;
+
+import java.util.*;
 
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
         DriverB mikle = new DriverB(
                 "Зубенко Михаил Петрович",
@@ -69,35 +68,43 @@ public class Main {
             e.printStackTrace();
             System.out.println("Ошибка при проведении диагностики");
         }
-        ArrayList<Transport<?>> carRace = new ArrayList<>();
-        carRace.add(lada);
-        carRace.add(maz);
-        carRace.add(volkswagen);
+        ArrayList<Driver<?>> drivers = new ArrayList<>();
+        drivers.add(igor);
+        drivers.add(mikle);
+        drivers.add(sergay);
 
         Mechanics m1 = new Mechanics("Fricov Alexey Ivanovich", "Volksvagen", REPAIR_CAR);
         Mechanics m2 = new Mechanics("Fricov Peter Spidermanov", "MAZ", REPAIR_BUS, REPAIR_CAR);
         Mechanics m3 = new Mechanics("Fricov Vladimir Alexeevich", "ZAZ", REPAIR_TRUCK, REPAIR_BUS, REPAIR_CAR);
         Mechanics m4 = new Mechanics("Fricov Alexey Igorevich", "Your Car", REPAIR_BUS);
 
-
         lada.addMechanic(m1);
         lada.addMechanic(m2);
         maz.addMechanic(m3);
         volkswagen.addMechanic(m4);
 
-        for (Transport<?> transport : carRace){
-            System.out.println(transport + " " + transport.getMechanics() + " " + transport.getDriver());
+        Set<Driver<?>> driverSet = new HashSet<>(drivers);
+        Iterator<Driver<?>> driverIterator = driverSet.iterator();
+
+        while (driverIterator.hasNext()){
+            System.out.println(driverIterator.next());
         }
 
-        ServiceStation sto = new ServiceStation();
+//        for (Driver<?> m: driverSet){
+//            System.out.println(m + " ready for start race"); //Alternative
+//        }
 
-        sto.addCarQueue(lada);
-        sto.addCarQueue(maz);
-        sto.addCarQueue(volkswagen);
+        Map<Transport<?>, Mechanics> repair = new HashMap<>();
+        repair.put(lada, m1);
+        repair.put(maz, m3);
+        repair.put(volkswagen, m2);
 
-        sto.technicalInspection();
-        sto.technicalInspection();
-        sto.technicalInspection();
+        System.out.println(repair);
+
+
+
+
+
 
 
 

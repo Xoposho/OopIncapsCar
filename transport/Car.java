@@ -2,7 +2,14 @@ package transport;
 
 import Driver.DriverB;
 import Exeption.DiagnosticFailedException;
+import Mechanics.Mechanics;
 import transport.Classification.ClassificationPassengerCar;
+
+import java.util.Collection;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
+
 import static Mechanics.TypeRepair.REPAIR_CAR;
 
 public class Car extends Transport implements Competing {
@@ -26,6 +33,20 @@ public class Car extends Transport implements Competing {
 
     public DriverB getDriver() {
         return driver;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Car car = (Car) o;
+        return bodyType == car.bodyType && Objects.equals(driver, car.driver);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), bodyType, driver);
     }
 
     @Override
@@ -70,5 +91,7 @@ public class Car extends Transport implements Competing {
     public void maxSpeed() {
         System.out.println("Максимальная скорость " + getBrand() + " " + getModel() + ": ");
     }
+
+
 }
 //by Igor
