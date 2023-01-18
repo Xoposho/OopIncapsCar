@@ -5,7 +5,9 @@ import Exeption.DiagnosticFailedException;
 import static Mechanics.TypeRepair.REPAIR_TRUCK;
 import transport.Classification.ClassificationFreightCar;
 
-public class Truck extends Transport implements Competing {
+import java.util.Objects;
+
+public class Truck  extends Transport implements Competing {
 
     private ClassificationFreightCar loadCapacity;
 
@@ -15,6 +17,20 @@ public class Truck extends Transport implements Competing {
         super(brand, model, engineVolume, REPAIR_TRUCK, driver);
         this.driver = driver;
         this.loadCapacity = loadCapacity;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Truck truck = (Truck) o;
+        return loadCapacity == truck.loadCapacity && Objects.equals(driver, truck.driver);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), loadCapacity, driver);
     }
 
     public ClassificationFreightCar getLoadCapacity() {

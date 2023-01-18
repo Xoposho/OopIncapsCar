@@ -9,15 +9,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public abstract class Transport <T extends Driver> implements Competing{
+public abstract class Transport <D extends Driver<?>> implements Competing{
     private String brand;
     private String model;
     private double engineVolume;
     private final TypeRepair typeRepair;
     private final List<Mechanics> mechanic = new ArrayList<>();
-    private final T driver;
+    private final D driver;
 
-    public Transport(String brand, String model, double engineVolume, TypeRepair typeRepair, T driver) {
+    public Transport(String brand, String model, double engineVolume, TypeRepair typeRepair, D driver) {
         this.brand = Objects.requireNonNullElse(brand, "default");
         this.model = Objects.requireNonNullElse(model, "default");
         this.typeRepair = typeRepair;
@@ -54,7 +54,7 @@ public abstract class Transport <T extends Driver> implements Competing{
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Transport transport = (Transport) o;
+        Transport<?> transport = (Transport<?>) o;
         return Double.compare(transport.engineVolume, engineVolume) == 0 && Objects.equals(brand, transport.brand) && Objects.equals(model, transport.model);
     }
 
@@ -76,7 +76,7 @@ public abstract class Transport <T extends Driver> implements Competing{
         return model;
     }
 
-    public Driver getDriver() {
+    public Driver<?> getDriver() {
         return driver;
     }
 

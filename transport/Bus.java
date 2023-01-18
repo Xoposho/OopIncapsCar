@@ -3,6 +3,9 @@ package transport;
 import static Mechanics.TypeRepair.REPAIR_BUS;
 import transport.Classification.ClassificationBus;
 import Driver.DriverD;
+
+import java.util.Objects;
+
 public class Bus extends Transport implements Competing {
 
     private ClassificationBus seatCount;
@@ -11,6 +14,20 @@ public class Bus extends Transport implements Competing {
         super(brand, model, engineVolume, REPAIR_BUS, driver);
         this.driver = driver;
         this.seatCount = seatCount;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Bus bus = (Bus) o;
+        return seatCount == bus.seatCount && Objects.equals(driver, bus.driver);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), seatCount, driver);
     }
 
     public ClassificationBus getSeatCount() {

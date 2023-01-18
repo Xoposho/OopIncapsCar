@@ -7,11 +7,12 @@ import transport.Classification.ClassificationPassengerCar;
 
 import java.util.Collection;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 import static Mechanics.TypeRepair.REPAIR_CAR;
 
-public class Car extends Transport implements Competing, Map<Transport<?>, Mechanics> {
+public class Car extends Transport implements Competing {
 
     private ClassificationPassengerCar bodyType;
     private final DriverB driver;
@@ -32,6 +33,20 @@ public class Car extends Transport implements Competing, Map<Transport<?>, Mecha
 
     public DriverB getDriver() {
         return driver;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Car car = (Car) o;
+        return bodyType == car.bodyType && Objects.equals(driver, car.driver);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), bodyType, driver);
     }
 
     @Override
@@ -77,64 +92,6 @@ public class Car extends Transport implements Competing, Map<Transport<?>, Mecha
         System.out.println("Максимальная скорость " + getBrand() + " " + getModel() + ": ");
     }
 
-    @Override
-    public int size() {
-        return 0;
-    }
 
-    @Override
-    public boolean isEmpty() {
-        return false;
-    }
-
-    @Override
-    public boolean containsKey(Object key) {
-        return false;
-    }
-
-    @Override
-    public boolean containsValue(Object value) {
-        return false;
-    }
-
-    @Override
-    public Mechanics get(Object key) {
-        return null;
-    }
-
-    @Override
-    public Mechanics remove(Object key) {
-        return null;
-    }
-
-    @Override
-    public void clear() {
-
-    }
-
-    @Override
-    public Set<Transport<?>> keySet() {
-        return null;
-    }
-
-    @Override
-    public Collection<Mechanics> values() {
-        return null;
-    }
-
-    @Override
-    public Set<Entry<Transport<?>, Mechanics>> entrySet() {
-        return null;
-    }
-
-    @Override
-    public void putAll(Map<? extends Transport<?>, ? extends Mechanics> m) {
-
-    }
-
-    @Override
-    public Mechanics put(Transport<?> key, Mechanics value) {
-        return null;
-    }
 }
 //by Igor

@@ -12,12 +12,13 @@ import transport.Truck;
 import transport.Car;
 import transport.Transport;
 import static Mechanics.TypeRepair.*;
+import Driver.DriverLicence;
 
 import java.util.*;
 
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
         DriverB mikle = new DriverB(
                 "Зубенко Михаил Петрович",
@@ -83,12 +84,17 @@ public class Main {
         volkswagen.addMechanic(m4);
 
         Set<Driver<?>> driverSet = new HashSet<>(drivers);
+        Iterator<Driver<?>> driverIterator = driverSet.iterator();
 
-        for (Driver<?> m: driverSet){
-            System.out.println(m + " ready for start race");
+        while (driverIterator.hasNext()){
+            System.out.println(driverIterator.next());
         }
 
-        Map<Transport<?>, Mechanics> repair = new HashMap<>(lada);
+//        for (Driver<?> m: driverSet){
+//            System.out.println(m + " ready for start race"); //Alternative
+//        }
+
+        Map<Transport<?>, Mechanics> repair = new HashMap<>();
         repair.put(lada, m1);
         repair.put(maz, m3);
         repair.put(volkswagen, m2);

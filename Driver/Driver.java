@@ -77,7 +77,6 @@ public abstract class Driver<T extends Transport> {
     public String getFullName() {
         return fullName;
     }
-
     public int getDrivingExperience() {
         return drivingExperience;
     }
